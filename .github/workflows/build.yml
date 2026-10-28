@@ -45,16 +45,6 @@ jobs:
           mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
           chmod a+x ip2convert
 
-          URL=$(curl -s -L https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
-          FILE=$(echo $URL | xargs basename)
-          echo $URL
-          echo $FILE
-          curl -L $URL -o $FILE
-          tar -xf $FILE
-          rm $FILE
-          mv $(echo $FILE | sed 's/.tar.gz$//g') mmdbctl
-          chmod a+x mmdbctl
-
           ls
       - name: Fetch Data
         run: |
@@ -78,26 +68,11 @@ jobs:
 
           go run ip2location/csv2asn.go
 
-          curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo/asn.mmdb
-          curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
-
-          ./mmdbctl export ipinfo.country.mmdb ./ipinfo/country.csv
-          # ./mmdbctl export ipinfo.asn.mmdb ./ipinfo/asn.csv
-
-          cd ipinfo
-          go run country.go
-          go run convert/asn.go
-
-          mv new-asn.mmdb ../ipinfo.asn.mmdb
-
-          cd ..
-
           # rm data/cn
 
       - name: Build files
         run: |
           go run ./
-          go run ./ -c config-ipinfo.json
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -112,15 +87,5 @@ jobs:
             ./output/maxmind/ip2location.country-only-cn-private.mmdb
             ./output/dat/ip2location.geoip.dat
             ./output/dat/ip2location.geoip-only-cn-private.dat
-            ./output/maxmind/ipinfo.country.mmdb
-            ./output/maxmind/ipinfo.country-only-cn-private.mmdb
-            ./output/dat/ipinfo.geoip.dat
-            ./output/dat/ipinfo.geoip-only-cn-private.dat
 
             ./ip2location.asn.mmdb
-            ./ipinfo.asn.mmdb
-      - name: Telegram Notification
-        run: |
-          text="🆕 $(date +"%Y-%m-%d %H:%M:%S")"$'\n\n'"📌 数据源为 IPinfo 和 IP2Location Lite 的 GEOIP 和 MMDB 文件 已更新"$'\n\n'"📘 查看说明 https://t.me/zhetengsha/1459"
-          echo $text
-          curl -F disable_notification=true -F "chat_id=-1001771725356" -F "text=$text" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"

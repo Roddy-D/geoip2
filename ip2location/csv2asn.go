@@ -65,7 +65,7 @@ func main() {
 	writer, err := mmdbwriter.New(
 		mmdbwriter.Options{
 			DatabaseType: "GeoLite2-ASN",
-			Description:  map[string]string{"en": "IPinfo GeoLite2 ASN database"},
+			Description:  map[string]string{"en": "IP2Location GeoLite2 ASN database"},
 			RecordSize:   24,
 		},
 	)
