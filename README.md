@@ -1,8 +1,32 @@
 # 数据来源
 
+[IPinfo](https://ipinfo.io/account/data-downloads)
+
 [IP2Location](https://lite.ip2location.com/database-download)
 
 ~~[mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list)~~
+
+# IPinfo
+
+## ipinfo.country.mmdb
+
+[https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.country.mmdb](https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.country.mmdb)
+
+## ipinfo.country.mmdb(cn, private)
+
+[https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.country-only-cn-private.mmdb](https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.country-only-cn-private.mmdb)
+
+## ipinfo.geoip.dat
+
+[https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.geoip.dat](https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.geoip.dat)
+
+## ipinfo.geoip.dat(cn, private)
+
+[https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.geoip-only-cn-private.dat](https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.geoip-only-cn-private.dat)
+
+## ipinfo.asn.mmdb
+
+[https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.asn.mmdb](https://github.com/Roddy-D/geoip2/releases/latest/download/ipinfo.asn.mmdb)
 
 # IP2Location Lite
 
